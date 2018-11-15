@@ -7,12 +7,13 @@ import javax.persistence.*;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private long id;
     private String firstName;
     private String lastName;
     private String gravatar;
     private String email;
-    private String hobbies;
+    private String headshot;
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -23,17 +24,24 @@ public class Profile {
     public Profile() {
     }
 
-
-    public Profile(String firstName, String lastName, String gravatar, String email, String hobbies, String description,User user) {
+    public Profile(String firstName, String lastName, String gravatar, String email, String headshot, String description, User user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gravatar = gravatar;
         this.email = email;
-        this.hobbies = hobbies;
+        this.headshot = headshot;
         this.description = description;
         this.user = user;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -75,12 +83,12 @@ public class Profile {
         this.email = email;
     }
 
-    public String getHobbies() {
-        return hobbies;
+    public String getHeadshot() {
+        return headshot;
     }
 
-    public void setHobbies(String hobbies) {
-        this.hobbies = hobbies;
+    public void setHeadshot(String headshot) {
+        this.headshot = headshot;
     }
 
     public String getDescription() {
@@ -89,13 +97,6 @@ public class Profile {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
 

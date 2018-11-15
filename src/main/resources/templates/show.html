@@ -13,22 +13,14 @@
 
 <div class="container">
         <div class="jumbotron">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th><a href="/">Show All profile</a><br /></th>
-            <th>Enter your profile:</th>
-            <th>Message Post Date :</th>
-            <th>Message Sent By: </th>
-        </tr>
-        </thead>
-    <tbody>
-        <tr>
-            <td></td>
-            <td><span th:text="${profile.firstName}"></span></td>
-            <td><span th:text="${profile.lastName }" ></span></td>
-            <td><span th:text="${profile.email }" ></span></td>
-            <td><span th:text="${profile.description }" ></span></td>
+
+
+            First Name: <span th:text="${profile.firstName}"></span><br>
+            Last Name: <span th:text="${profile.lastName }" ></span><br/>
+            Email: <span th:text="${profile.email }" ></span><br/>
+            Description: <span th:text="${profile.description }" ></span><br/>
+            Image: <img th:src="${message.headshot}" />
+                <img src=https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=80 alt="picture of somebody"/>
         </tr>
     </tbody>
     </table>

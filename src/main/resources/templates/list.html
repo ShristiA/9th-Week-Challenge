@@ -2,7 +2,18 @@
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:replace="base :: headstuff"></th:block>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
 </head>
 
 <body>
@@ -10,25 +21,35 @@
 
 <div class="container">
     <div class="jumbotron">
-        <a href ="/add">Add profile</a><br />
-
+        <h4>Welcome to Messaging App - Bullhorn</h4><br />
+        <a href ="/add"><h5>Add Message</h5></a><br />
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Posted By</th>
+                <th>Hashtags</th>
+            </tr>
 
     <tr th:each="profile : ${messages}">
-        <td th:text ="${profile.firstName}"></td>
-        <td th:text ="${profile.lastName}"></td>
-        <td th:text ="${profile.email}"></td>
         <td th:text ="${profile.description}"></td>
+        <td th:text ="${profile.firstName}"></td>
+        <td>15 Nov 2018</td>
+        <img src=https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=80 alt="picture of somebody"/>
+        <img th:src="${gravatar}" />
+        Image: <div th:if="${message.headshot} !=null">
+        <img th:src="${message.headshot}" />
+        <hr />
         <td>
             <span th:if="${user_id == profile.user.id}">
-                <a th:href="@{/update/{id} (id=${profile.id})}">Edit</a>
+                <a th:href="@{/update/{id} (id=${profile.id})}" button type="submit" class="btn btn-default">Edit</a>
             </span>
             <div sec:authorize="hasAuthority('ADMIN')">
-            <a th:href="@{/update/{id}(id=${profile.id})}">Edit</a>
-            <a th:href="@{/detail/{id}(id=${profile.id})}">Details</a>
+            <a class ="btn-primary btn-lg" th:href="@{/update/{id}(id=${profile.id})}" role="button">Edit</a>
+            <a class ="btn-primary btn-lg" th:href="@{/detail/{id}(id=${profile.id})}" role="button">Details</a>
 
                       </div>
             <div sec:authorize="hasAuthority('USER')">
-                <a th:href="@{/detail/{id}(id=${profile.id})}">Details</a>
+                <a class ="btn-primary btn-lg" th:href="@{/detail/{id}(id=${profile.id})}"role="button">Details</a>
 
            </div>
 
