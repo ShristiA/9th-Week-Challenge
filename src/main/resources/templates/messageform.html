@@ -9,25 +9,36 @@
 <div th:replace="base" :: navlinks> </div>
 <div class="container">
     <div class="jumbotron">
-<form action="#" th:action="@{/process}" th:object="${message}" method="post">
+<form action="#" th:action="@{/process}" th:object="${profile}" method="post">
     <input type ="hidden" th:field="*{id}" />
 
-    <h4>Add message</h4>
+    <h4>Add profile</h4>
 
-   <div class="description">
+    <label for="firstName">First Name :</label>
+    <input type="text" th:field="*{firstName}" id="firstName"  placeholder = "First Name"  />
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span></br >
+
+    <label for="lastName">Last Name :</label>
+    <input type="text" th:field="*{lastName}" id="lastName"  placeholder = "Last Name" />
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span></br >
+
+
+    <h6> Gravatar url</h6>
+
+
+    <label for="email">Email :</label>
+    <input type="text" th:field="*{email}" id="email"  placeholder = "Email" />
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></br >
+
+
+
+
 
         <label for="description">Description : </label>
-   <textarea rows="1" th:field="*{description}" id="description" />
+   <input type="text" th:field="*{description}" id="description" placeholder="Hobbies or write something about you.." />
     <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span></br >
-    </div>
 
-   <label for="date">Date :</label>
-    <input type="text" th:field="*{date}" id="date" />
-    <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span></br >
 
-   <label for="sentby">Sent By :</label>
-   <input type="text" th:field="*{sentBy}" id="sentby" />
-    <span th:if="${#fields.hasErrors('sentBy')}" th:errors="*{sentBy}"></span></br >
 
     <br />
     <button type="submit" class="btn btn-default">Submit</button>

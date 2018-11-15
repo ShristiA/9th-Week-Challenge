@@ -16,8 +16,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th><a href="/">Show All message</a><br /></th>
-            <th>Enter your message:</th>
+            <th><a href="/">Show All profile</a><br /></th>
+            <th>Enter your profile:</th>
             <th>Message Post Date :</th>
             <th>Message Sent By: </th>
         </tr>
@@ -25,9 +25,10 @@
     <tbody>
         <tr>
             <td></td>
-            <td><span th:text="${message.description}"></span></td>
-            <td><span th:text="${message.date }" ></span></td>
-            <td><span th:text="${message.sentBy }" ></span></td>
+            <td><span th:text="${profile.firstName}"></span></td>
+            <td><span th:text="${profile.lastName }" ></span></td>
+            <td><span th:text="${profile.email }" ></span></td>
+            <td><span th:text="${profile.description }" ></span></td>
         </tr>
     </tbody>
     </table>

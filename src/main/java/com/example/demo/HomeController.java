@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @Controller
 public class HomeController {
 @Autowired
-MessageRepository messageRepository;
+ProfileRepository profileRepository;
 
     @Autowired
     private UserService userService;
@@ -49,7 +49,7 @@ MessageRepository messageRepository;
 
 @RequestMapping("/")
     public String listMessage(Model model){
-    model.addAttribute("messages", messageRepository.findAll());
+    model.addAttribute("messages", profileRepository.findAll());
     if(getUser() != null){
         model.addAttribute("user_id", getUser().getId()); //getting user name in the userid.
     }
@@ -58,28 +58,28 @@ MessageRepository messageRepository;
 
 @GetMapping("/add")
 public String courseForm(Model model){
-    model.addAttribute("message", new Message());
+    model.addAttribute("message", new Profile());
     return "messageform";
 }
 @PostMapping("/process")
-    public String processForm(@Valid Message message, BindingResult result) {
+    public String processForm(@Valid Profile profile, BindingResult result) {
     if (result.hasErrors()) {
         return "messageform";
     }
-    message.setUser(getUser()); //like saving a value of userid in message table.
-    messageRepository.save(message);
+    profile.setUser(getUser()); //like saving a value of userid in profile table.
+    profileRepository.save(profile);
     return "redirect:/";
 }
 
 @RequestMapping("/detail/{id}")
     public String showMessage(@PathVariable("id") long id, Model model)
 {
-    model.addAttribute("message", messageRepository.findById(id).get());
+    model.addAttribute("message", profileRepository.findById(id).get());
     return "show";
 }
 @RequestMapping("/update/{id}")
     public String updateMessage(@PathVariable("id") long id, Model model){
-    model.addAttribute("message", messageRepository.findById(id).get());
+    model.addAttribute("message", profileRepository.findById(id).get());
     return "messageform";
 
 }
