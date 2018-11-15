@@ -78,7 +78,7 @@ public String courseForm(Model model){
     }
     profile.setUser(getUser()); //like saving a value of userid in profile table.
     profileRepository.save(profile);
-
+//      model.addattribute("gravatar")
     if (file.isEmpty()) {
         return "redirect:/";
     }
@@ -99,9 +99,9 @@ public String courseForm(Model model){
         String email = profileRepository.findById(id).get().getEmail();
         String hash = UserService.md5Hex(email);
         String gravatar = "https://www.gravatar.com/avatar/" + hash;
-        model.addAttribute("email", gravatar);
-        return "redirect:/";
-
+        //model.addAttribute("email", gravatar);
+        //return "redirect:/";
+       return gravatar;
     }
 
 @RequestMapping("/detail/{id}")
